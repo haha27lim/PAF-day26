@@ -36,20 +36,27 @@ public class TvShow {
         this.rating = rating;
     }
 
+    // Method takes a Document object as input and returns a TvShow object
     public static TvShow create(Document doc) {
+        // Create a new instance of TvShow
         TvShow tvShow = new TvShow();
+        // Set the id of the TvShow object to the integer value of the FIELD_ID in the Document
         tvShow.setId(doc.getInteger(FIELD_ID));
         tvShow.setName(doc.getString(FIELD_NAME));
         tvShow.setUrl(doc.getString(FIELD_URL));
+        // Return the TvShow object
         return tvShow;
     }
     
+    // Method takes a Document object as input and returns a TvShow object that contains only a summary of the TV show
     public static TvShow createSummary(Document doc) {
+        // Create a new instance of TvShow
         TvShow tvShow = new TvShow();
         tvShow.setId(doc.getInteger(FIELD_ID));
         tvShow.setName(doc.getString(FIELD_NAME));
-		  Document d = (Document)doc.get(FIELD_RATING);
-          tvShow.setRating(d.getDouble(FIELD_AVERAGE));       
+        // Get the Document object with key FIELD_RATING from the input Document object
+		Document d = (Document)doc.get(FIELD_RATING);
+        tvShow.setRating(d.getDouble(FIELD_AVERAGE));       
         return tvShow;
     }
 }
